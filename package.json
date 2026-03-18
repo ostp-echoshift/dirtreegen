@@ -1,0 +1,37 @@
+{
+  "name": "ostp-devtool",
+  "version": "1.0.0",
+  "description": "OSTP DevTool — Herramienta de análisis, lectura y transformación de proyectos de desarrollo",
+  "author": "@echoShift · QUANTUM.qnu · Zapopan, Jalisco",
+  "license": "MIT",
+  "homepage": "https://ostp-echoshift.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ostp-echoshift/ostp-echoshift.git"
+  },
+  "keywords": [
+    "ostp",
+    "echoShift",
+    "devtool",
+    "android",
+    "kotlin",
+    "gradle",
+    "dirtree",
+    "validator",
+    "quantum"
+  ],
+  "type": "module",
+  "main": "src/core/app.js",
+  "scripts": {
+    "build":   "pwsh -File scripts/build.ps1",
+    "deploy":  "pwsh -File scripts/deploy-gh.ps1",
+    "dev": "npx serve . -l 3000",
+    "lint":    "npx eslint src/**/*.js"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

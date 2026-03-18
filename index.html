@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>OSTP · DevTool · @echoShift</title>
+<link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ── TOPBAR ─────────────────────────────────────── -->
+  <div id="topbar">
+    <div class="topbar-brand">
+      <div class="topbar-brand-dot"></div>
+      <div>
+        <div class="topbar-brand-name">OSTP · DevTool</div>
+        <div class="topbar-brand-sub">@echoShift · QUANTUM.qnu</div>
+      </div>
+    </div>
+
+    <div class="topbar-cmd">
+      <div class="topbar-cmd-inner">
+        <span class="prompt">→</span>
+        <span id="cmdLine">ostp devtool --ready</span>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="btn btn-vino" onclick="triggerOpen()">📁 Abrir</button>
+      <button class="btn btn-gold"    id="bMd"  disabled>⬇ MD</button>
+      <button class="btn btn-success" id="bTxt" disabled>⬇ TXT</button>
+      <button class="btn btn-primary" id="bCmd" disabled>⬡ PS1</button>
+      <input type="file" id="fi" webkitdirectory multiple style="display:none"/>
+    </div>
+  </div>
+
+  <!-- ── BODY ───────────────────────────────────────── -->
+  <div id="body">
+
+    <!-- ── SIDEBAR ─────────────────────────────────── -->
+    <div id="sidebar">
+
+      <div class="sidebar-section">
+        <div class="label" style="margin-bottom:8px">Proyecto</div>
+        <div class="upload-zone" id="uz">
+          <input type="file" webkitdirectory multiple id="fi2"/>
+          <span class="upload-zone-icon">📂</span>
+          <div class="upload-zone-text">Arrastra una carpeta</div>
+          <div class="upload-zone-sub">o haz click aquí</div>
+        </div>
+
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input type="text" id="si" placeholder="ostp search..."/>
+          <div class="search-results" id="sr"></div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="chips" id="chips">
+        <span class="chip on"  data-e="">ALL</span>
+        <span class="chip" data-e="kt">.kt</span>
+        <span class="chip" data-e="xml">.xml</span>
+        <span class="chip" data-e="kts">.kts</span>
+        <span class="chip" data-e="toml">.toml</span>
+        <span class="chip" data-e="properties">.prop</span>
+        <span class="chip" data-e="json">.json</span>
+        <span class="chip" data-e="md">.md</span>
+        <span class="chip" data-e="sql">.sql</span>
+        <span class="chip" data-e="ps1">.ps1</span>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-cell"><div class="stat-n" id="sT">0</div><div class="stat-l">Files</div></div>
+        <div class="stat-cell"><div class="stat-n" id="sF">0</div><div class="stat-l">Dirs</div></div>
+        <div class="stat-cell"><div class="stat-n" id="sC" style="color:var(--risk-critical)">0</div><div class="stat-l">Crit</div></div>
+        <div class="stat-cell"><div class="stat-n" id="sH" style="color:var(--risk-high)">0</div><div class="stat-l">High</div></div>
+      </div>
+
+      <div class="label" style="padding:6px 14px">Estructura</div>
+      <div id="file-tree"></div>
+    </div>
+
+    <!-- ── MAIN ─────────────────────────────────────── -->
+    <div id="main">
+
+      <!-- Toolbar -->
+      <div id="toolbar">
+        <div class="toolbar-path" id="tp">— sin proyecto —</div>
+        <div class="view-tabs">
+          <button class="vt on" id="vt-tree">🌳 TREE</button>
+          <button class="vt"    id="vt-content">📄 READ</button>
+          <button class="vt"    id="vt-export">📤 EXPORT</button>
+          <button class="vt"    id="vt-validate">✓ VALIDATE</button>
+          <button class="vt"    id="vt-cmd">⬡ PS1</button>
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div id="output">
+        <div class="empty">
+          <div class="empty-icon">⬡</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text)">OSTP · DevTool v1</div>
+          <div class="mono-sm" style="color:var(--text-muted);margin-top:4px">Oficina de Soluciones Técnicas y Prototipado</div>
+          <button class="btn btn-success" onclick="triggerOpen()" style="margin-top:12px">📂 Abrir Proyecto</button>
+        </div>
+      </div>
+
+      <!-- Terminal -->
+      <div id="terminal">
+        <div class="term-header">
+          <div class="term-title">OSTP · TERMINAL</div>
+          <button class="btn btn-vino btn-xs" onclick="clearLog()">CLR</button>
+        </div>
+        <div class="term-log" id="log"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── STATUS BAR ─────────────────────────────────── -->
+  <div id="statusbar">
+    <div class="status-item">
+      <div class="status-dot" style="background:var(--ostp-primary)"></div>
+      <span class="status-ok" id="stMsg">READY</span>
+    </div>
+    <span>OSTP · @echoShift · Zapopan, Jalisco</span>
+    <span class="status-right" id="stTime"></span>
+  </div>
+
+</div>
+
+<script type="module" src="src/core/app.js"></script>
+</body>
+</html>

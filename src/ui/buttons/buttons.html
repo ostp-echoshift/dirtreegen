@@ -1,0 +1,46 @@
+<!-- ═══════════════════════════════════════════════════════
+     OSTP DevTool — Buttons Reference
+     src/ui/buttons/buttons.html
+     Referencia visual de todos los botones del sistema
+     @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ -->
+
+<!-- ── Botones principales (topbar) ──────────────────── -->
+<div class="flex gap-sm">
+  <button class="btn btn-vino"    id="btnOpen">📁 Abrir</button>
+  <button class="btn btn-gold"    id="bMd"  disabled>⬇ MD</button>
+  <button class="btn btn-success" id="bTxt" disabled>⬇ TXT</button>
+  <button class="btn btn-primary" id="bCmd" disabled>⬡ PS1</button>
+</div>
+
+<!-- ── View tabs (toolbar) ───────────────────────────── -->
+<div class="view-tabs">
+  <button class="vt on" id="vt-tree">🌳 TREE</button>
+  <button class="vt"    id="vt-content">📄 READ</button>
+  <button class="vt"    id="vt-export">📤 EXPORT</button>
+  <button class="vt"    id="vt-validate">✓ VALIDATE</button>
+  <button class="vt"    id="vt-cmd">⬡ PS1</button>
+</div>
+
+<!-- ── Filter chips (sidebar) ────────────────────────── -->
+<div class="chips">
+  <span class="chip on"  data-e="">ALL</span>
+  <span class="chip" data-e="kt">.kt</span>
+  <span class="chip" data-e="xml">.xml</span>
+  <span class="chip" data-e="kts">.kts</span>
+  <span class="chip" data-e="toml">.toml</span>
+  <span class="chip" data-e="properties">.prop</span>
+  <span class="chip" data-e="json">.json</span>
+  <span class="chip" data-e="md">.md</span>
+  <span class="chip" data-e="sql">.sql</span>
+  <span class="chip" data-e="ps1">.ps1</span>
+</div>
+
+<!-- ── Terminal control ──────────────────────────────── -->
+<button class="btn btn-vino btn-xs" onclick="clearLog()">CLR</button>
+
+<!-- ── File block expand ─────────────────────────────── -->
+<button class="fb-toggle">Expandir</button>
+
+<!-- ── CMD copy ──────────────────────────────────────── -->
+<button class="cmd-copy">Copy</button>

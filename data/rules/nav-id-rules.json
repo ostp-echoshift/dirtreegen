@@ -1,0 +1,14 @@
+{
+  "rules": [
+    {
+      "id": "nav-menu-id-match",
+      "desc": "IDs in nav_graph.xml must exactly match IDs in bottom_nav_menu.xml",
+      "severity": "error"
+    },
+    {
+      "id": "start-destination",
+      "desc": "app:startDestination must reference a valid fragment ID",
+      "severity": "error"
+    }
+  ]
+}

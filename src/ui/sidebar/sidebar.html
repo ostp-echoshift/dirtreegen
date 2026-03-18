@@ -1,0 +1,73 @@
+<!-- ═══════════════════════════════════════════════════════
+     OSTP DevTool — Sidebar Component
+     src/ui/sidebar/sidebar.html
+     @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ -->
+
+<div id="sidebar">
+
+  <!-- Project section -->
+  <div class="sidebar-section">
+    <div class="label" style="margin-bottom:8px">Proyecto</div>
+
+    <!-- Upload zone -->
+    <div class="upload-zone" id="uz">
+      <input type="file" webkitdirectory multiple id="fi2"/>
+      <span class="upload-zone-icon">📂</span>
+      <div class="upload-zone-text">Arrastra una carpeta</div>
+      <div class="upload-zone-sub">o haz click aquí</div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="si" placeholder="ostp search..."/>
+      <div class="search-results" id="sr"></div>
+    </div>
+  </div>
+
+  <!-- Filter chips -->
+  <div class="chips" id="chips">
+    <span class="chip on"  data-e="">ALL</span>
+    <span class="chip" data-e="kt">.kt</span>
+    <span class="chip" data-e="xml">.xml</span>
+    <span class="chip" data-e="kts">.kts</span>
+    <span class="chip" data-e="toml">.toml</span>
+    <span class="chip" data-e="properties">.prop</span>
+    <span class="chip" data-e="json">.json</span>
+    <span class="chip" data-e="md">.md</span>
+    <span class="chip" data-e="sql">.sql</span>
+    <span class="chip" data-e="ps1">.ps1</span>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-n" id="sT">0</div>
+      <div class="stat-l">Files</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-n" id="sF">0</div>
+      <div class="stat-l">Dirs</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-n" id="sC" style="color:var(--risk-critical)">0</div>
+      <div class="stat-l">Crit</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-n" id="sH" style="color:var(--risk-high)">0</div>
+      <div class="stat-l">High</div>
+    </div>
+  </div>
+
+  <!-- File tree label -->
+  <div class="label" style="padding:6px 14px">Estructura</div>
+
+  <!-- File tree mount point -->
+  <div id="file-tree">
+    <div style="padding:20px;text-align:center;font-size:11px;color:var(--border)">
+      ostp awaiting target...
+    </div>
+  </div>
+
+</div>

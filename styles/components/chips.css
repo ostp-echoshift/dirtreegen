@@ -1,0 +1,38 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Chips / Filters
+   styles/components/chips.css
+═══════════════════════════════════════════════════════ */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-xs);
+  padding: var(--sp-sm) var(--sp-md);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.chip {
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: var(--fs-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  transition: all var(--t-base);
+}
+
+.chip.on {
+  background: var(--ostp-primary);
+  color: var(--text-on-primary);
+  border-color: var(--ostp-primary);
+  font-weight: 700;
+}
+
+.chip:hover:not(.on) {
+  border-color: var(--ostp-primary);
+  color: var(--ostp-primary);
+}

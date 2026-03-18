@@ -1,0 +1,26 @@
+{
+  "extensions": {
+    "kt":         { "icon": "🟣", "risk": "m", "label": "⚠ MEDIUM" },
+    "kts":        { "icon": "🔧", "risk": "h", "label": "🔥 HIGH" },
+    "gradle":     { "icon": "🔧", "risk": "h", "label": "🔥 HIGH" },
+    "xml":        { "icon": "🔧", "risk": "h", "label": "🔥 HIGH" },
+    "toml":       { "icon": "📋", "risk": "h", "label": "🔥 HIGH" },
+    "properties": { "icon": "⚙️", "risk": "h", "label": "🔥 HIGH" },
+    "json":       { "icon": "🌐", "risk": "m", "label": "⚠ MEDIUM" },
+    "md":         { "icon": "📜", "risk": "l", "label": "ℹ LOW" },
+    "sql":        { "icon": "🗄️", "risk": "c", "label": "🔥🔥 CRITICAL" },
+    "ps1":        { "icon": "🏗️", "risk": "h", "label": "🔥 HIGH" },
+    "bat":        { "icon": "🏗️", "risk": "h", "label": "🔥 HIGH" },
+    "js":         { "icon": "📜", "risk": "m", "label": "⚠ MEDIUM" },
+    "html":       { "icon": "🌐", "risk": "m", "label": "⚠ MEDIUM" },
+    "css":        { "icon": "🎨", "risk": "l", "label": "ℹ LOW" },
+    "java":       { "icon": "☕", "risk": "m", "label": "⚠ MEDIUM" },
+    "gitignore":  { "icon": "🚫", "risk": "l", "label": "ℹ LOW" },
+    "apk":        { "icon": "📦", "risk": "h", "label": "🔥 HIGH" },
+    "exe":        { "icon": "⚙️", "risk": "h", "label": "🔥 HIGH" },
+    "env":        { "icon": "🔑", "risk": "c", "label": "🔥🔥 CRITICAL" }
+  },
+  "specialNames": ["password", "secret", ".env"],
+  "textExtensions": ["kt","kts","xml","toml","properties","json","md","sql","ps1","bat",
+    "js","html","css","txt","log","java","gradle","gitignore","sh","yaml","yml","csv"]
+}

@@ -1,0 +1,115 @@
+# ═══════════════════════════════════════════════════════════════
+#  OSTP DevTool — AI Prompt Context
+#  docs/yaml/prompt.yaml
+#  @echoShift · QUANTUM.qnu · Zapopan, Jalisco
+# ═══════════════════════════════════════════════════════════════
+
+identity:
+  name:     "OSTP DevTool"
+  alias:    "Agente Rider"
+  author:   "@echoShift"
+  system:   "QUANTUM.qnu"
+  location: "Zapopan, Jalisco, México"
+  context:  "Modo agente OSTP activado"
+
+project:
+  name:    "DirTreeGen"
+  repo:    "ostp-echoshift.github.io"
+  version: "1.0.0"
+  stack:
+    - "HTML5 vanilla"
+    - "CSS modular (no framework)"
+    - "JavaScript ES Modules"
+    - "GitHub Pages (hosting)"
+
+mission: >
+  Eliminar el punto ciego entre comunicación, construcción y resultados
+  en proyectos de desarrollo. La herramienta ubica, abre, lee, desglosea,
+  mapea posición, genera organización, sustrae, migra a formato distinto
+  y emite output legible para el usuario Y para la consola (PowerShell).
+
+modules:
+  - id: tree
+    desc: "Árbol visual del proyecto en formato console"
+  - id: reader
+    desc: "Lee y despliega contenido real de cualquier archivo"
+  - id: search
+    desc: "Búsqueda por nombre y contenido con snippet"
+  - id: validator
+    desc: "Valida versiones Kotlin/KSP/AGP y alineación de IDs nav"
+  - id: exporter
+    desc: "Genera MD + TXT con sello OSTP"
+  - id: cmd
+    desc: "Output formateado para PowerShell / consola"
+
+android_context:
+  project:   "JR-Sistema-Android"
+  package:   "com.jrsistem.app"
+  stack:
+    kotlin:     "2.0.21"
+    ksp:        "2.0.21-1.0.28"
+    agp:        "8.7.3"
+    room:       "2.7.0"
+    gradle:     "9.3.1"
+    jdk:        "Eclipse Adoptium 17.0.16.8-hotspot"
+  java_home:  "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.16.8-hotspot"
+  device:     "Moto G84 5G"
+  emulator:   "Small Phone API 36"
+  paths:
+    project:   "C:\\Proyectos\\JR-Sistema-Android"
+    devtool:   "C:\\Proyectos\\DirTreeGen"
+    crossdev:  "C:\\Users\\fngtr\\CrossDevice\\moto g84 5G"
+
+known_errors:
+  - id:    "kotlin-duplicate-plugin"
+    error: "Cannot add extension with name 'kotlin'"
+    fix:   "No declarar kotlin en buildscript Y en plugins{} simultáneamente"
+
+  - id:    "kapt-kotlin2"
+    error: "Kapt doesn't support language version 2.0+"
+    fix:   "Migrar a KSP: id('com.google.devtools.ksp')"
+
+  - id:    "stdlib-version-mismatch"
+    error: "Metadata version 2.2.0, expected 2.0.0"
+    fix:   "resolutionStrategy.force('kotlin-stdlib:2.0.21')"
+
+  - id:    "nav-id-mismatch"
+    error: "App no navega entre fragments"
+    fix:   "IDs en nav_graph.xml deben ser idénticos a bottom_nav_menu.xml"
+
+  - id:    "manifest-classnotfound"
+    error: "ClassNotFoundException: com.jrsistem.app.MainActivity"
+    fix:   "android:name en Manifest debe coincidir con nombre real del .kt"
+
+  - id:    "java-home-invalid"
+    error: "JAVA_HOME is set to an invalid directory"
+    fix: >
+      reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
+      /v JAVA_HOME /t REG_SZ
+      /d "C:\Program Files\Eclipse Adoptium\jdk-17.0.16.8-hotspot" /f
+
+output_formats:
+  markdown:
+    header:   "# Árbol de Directorios - Análisis Cuántico"
+    system:   "QUANTUM.qnu Operation System"
+    author:   "OSTP @echoShift & Quantum Sys"
+    seal:     "<!--████████████████ostp████████████████████-->"
+  powershell:
+    header:   "# OSTP DevTool — PowerShell Output"
+    command:  "Get-Content \"{path}\" -Raw"
+    seal:     "# <!--████████████████ostp████████████████████-->"
+
+brand:
+  colors:
+    primary:   "#00ff90"
+    secondary: "#58a6ff"
+    accent:    "#ff6b6b"
+    vino:      "#6D1A2A"
+    gold:      "#C8982A"
+  fonts:
+    ui:   "Segoe UI, system-ui"
+    mono: "Consolas, Monaco"
+  seal:   "<!--████████████████ostp████████████████████-->"
+  themes:
+    - dark
+    - quantum

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48">
+  <defs>
+    <linearGradient id="eg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ff90"/>
+      <stop offset="100%" stop-color="#58a6ff"/>
+    </linearGradient>
+  </defs>
+  <!-- Signal waves left -->
+  <path d="M8 24 Q14 14 20 24 Q26 34 32 24" stroke="#00ff90" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M4 24 Q14 8 24 24 Q34 40 44 24" stroke="#58a6ff" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <!-- Text -->
+  <text x="50" y="30" font-family="Segoe UI, sans-serif" font-size="18" font-weight="700" fill="url(#eg)" letter-spacing="1">echoShift</text>
+  <!-- Dot -->
+  <circle cx="42" cy="24" r="3" fill="#00ff90"/>
+</svg>

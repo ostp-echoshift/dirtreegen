@@ -1,0 +1,29 @@
+<!-- ═══════════════════════════════════════════════════════
+     OSTP DevTool — Search Component
+     src/modules/search/search.html
+     Vive dentro del sidebar
+     @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ -->
+
+<div class="search-wrap">
+  <span class="search-icon">⌕</span>
+  <input
+    type="text"
+    id="si"
+    placeholder="ostp search..."
+    autocomplete="off"
+    spellcheck="false"
+  />
+  <!-- Dropdown de resultados -->
+  <div class="search-results" id="sr">
+    <!-- Estructura de cada resultado:
+    <div class="sr-item" data-path="{path}">
+      <span>{icon}</span>
+      <div style="flex:1;min-width:0">
+        <div class="sr-name">{nombre con highlight}</div>
+        <div class="sr-snip">...{snippet con highlight}...</div>
+      </div>
+    </div>
+    -->
+  </div>
+</div>

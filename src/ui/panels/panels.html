@@ -1,0 +1,44 @@
+<!-- ═══════════════════════════════════════════════════════
+     OSTP DevTool — Panels / Output Views
+     src/ui/panels/panels.html
+     Contiene los templates de los paneles de contenido
+     @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ -->
+
+<!-- ── Output mount point ────────────────────────────── -->
+<div id="output">
+
+  <!-- Empty state (default) -->
+  <div class="empty" id="emptyState">
+    <div class="empty-icon">⬡</div>
+    <div style="font-size:14px;font-weight:700;color:var(--text)">OSTP · DevTool v1</div>
+    <div class="mono-sm" style="color:var(--text-muted);margin-top:4px">
+      Oficina de Soluciones Técnicas y Prototipado
+    </div>
+    <button class="btn btn-success" onclick="triggerOpen()" style="margin-top:12px">
+      📂 Abrir Proyecto
+    </button>
+  </div>
+
+</div>
+
+<!-- ── File block template ────────────────────────────── -->
+<!--
+  Uso en JS: clonar este template y llenar los datos
+  <div class="fb">
+    <div class="fb-head">
+      <span class="fb-path">{icon} {path}</span>
+      <span class="fb-meta">{kb}KB · {lines}L</span>
+      <button class="fb-toggle">Expandir</button>
+    </div>
+    <div class="fb-body coll">{content}</div>
+  </div>
+-->
+
+<!-- ── CMD block template ─────────────────────────────── -->
+<!--
+  <div class="cmd-block">
+    <button class="cmd-copy" data-t="{escaped_content}">Copy</button>
+    {content}
+  </div>
+-->

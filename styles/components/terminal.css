@@ -1,0 +1,48 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Terminal
+   styles/components/terminal.css
+═══════════════════════════════════════════════════════ */
+
+#terminal {
+  border-top: 1px solid var(--border);
+  height: var(--terminal-h);
+  background: var(--bg-root);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.term-header {
+  padding: 4px var(--sp-md);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  background: rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.term-title {
+  font-size: var(--fs-sm);
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.term-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-sm) var(--sp-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  line-height: 1.7;
+}
+
+.tl { display: flex; gap: 6px; align-items: flex-start; }
+.tl-ok   { color: var(--ostp-primary); }
+.tl-warn { color: var(--ostp-warn); }
+.tl-err  { color: var(--ostp-accent); }
+.tl-info { color: var(--ostp-secondary); }
+.tl-muted { color: var(--text-muted); }

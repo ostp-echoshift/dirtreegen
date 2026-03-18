@@ -1,0 +1,35 @@
+<!-- ═══════════════════════════════════════════════════════
+     OSTP DevTool — Topbar Component
+     src/ui/topbar/topbar.html
+     @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ -->
+
+<div id="topbar">
+
+  <!-- Brand -->
+  <div class="topbar-brand">
+    <div class="topbar-brand-dot"></div>
+    <div>
+      <div class="topbar-brand-name">OSTP · DevTool</div>
+      <div class="topbar-brand-sub">@echoShift · QUANTUM.qnu</div>
+    </div>
+  </div>
+
+  <!-- Command line display -->
+  <div class="topbar-cmd">
+    <div class="topbar-cmd-inner">
+      <span class="prompt">→</span>
+      <span id="cmdLine">ostp devtool --ready</span>
+    </div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="topbar-actions">
+    <button class="btn btn-vino"    id="btnOpen" onclick="triggerOpen()">📁 Abrir</button>
+    <button class="btn btn-gold"    id="bMd"  disabled>⬇ MD</button>
+    <button class="btn btn-success" id="bTxt" disabled>⬇ TXT</button>
+    <button class="btn btn-primary" id="bCmd" disabled>⬡ PS1</button>
+    <input  type="file" id="fi" webkitdirectory multiple style="display:none"/>
+  </div>
+
+</div>

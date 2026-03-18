@@ -1,0 +1,58 @@
+<!-- ═══════════════════════════════════════════════════════
+     OSTP DevTool — Modals
+     src/ui/modals/modals.html
+     @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ -->
+
+<!-- ── Modal: Error de validación ────────────────────── -->
+<div class="modal-overlay" id="modalError">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">⚠ Error detectado</span>
+      <button class="modal-close" onclick="closeModal('modalError')">✕</button>
+    </div>
+    <div id="modalErrorBody" style="font-size:13px;line-height:1.7;color:var(--text)">
+      <!-- Contenido dinámico -->
+    </div>
+    <div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('modalError')">Cerrar</button>
+      <button class="btn btn-success btn-sm" id="modalErrorFix">Ver Fix</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: Shortcuts ───────────────────────────────── -->
+<div class="modal-overlay" id="modalShortcuts">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">⌨ Keyboard Shortcuts</span>
+      <button class="modal-close" onclick="closeModal('modalShortcuts')">✕</button>
+    </div>
+    <div id="modalShortcutsBody" style="font-size:12px;font-family:var(--font-mono)">
+      <!-- Se puebla desde shortcuts.json -->
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: Acerca de ───────────────────────────────── -->
+<div class="modal-overlay" id="modalAbout">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">OSTP · DevTool v1.0</span>
+      <button class="modal-close" onclick="closeModal('modalAbout')">✕</button>
+    </div>
+    <div style="font-size:13px;line-height:1.8;color:var(--text)">
+      <p style="color:var(--ostp-primary);font-family:var(--font-mono);margin-bottom:12px">
+        Oficina de Soluciones Técnicas y Prototipado
+      </p>
+      <p>@echoShift · QUANTUM.qnu · Zapopan, Jalisco</p>
+      <p style="color:var(--text-muted);margin-top:8px;font-size:11px">
+        Elimina el punto ciego entre comunicación,<br>
+        construcción y resultados en proyectos de desarrollo.
+      </p>
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:10px;color:var(--ostp-gold)">
+        <!--████████████████ostp████████████████████-->
+      </div>
+    </div>
+  </div>
+</div>

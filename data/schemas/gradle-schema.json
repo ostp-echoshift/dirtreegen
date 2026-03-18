@@ -1,0 +1,101 @@
+{
+  "schema": "gradle-android",
+  "version": "1.0",
+  "description": "Reglas de compatibilidad para Gradle + Kotlin + Android",
+
+  "compatibility_matrix": [
+    {
+      "kotlin":  "2.0.21",
+      "ksp":     "2.0.21-1.0.28",
+      "agp":     "8.7.3",
+      "room":    "2.6.1",
+      "gradle":  "9.3.1",
+      "jdk":     "17",
+      "status":  "stable",
+      "notes":   "Configuración probada y estable — JR-Sistema-Android"
+    },
+    {
+      "kotlin":  "2.2.0",
+      "ksp":     "2.2.0-1.0.29",
+      "agp":     "8.13.2",
+      "room":    "2.7.0",
+      "gradle":  "9.3.1",
+      "jdk":     "17",
+      "status":  "latest",
+      "notes":   "AGP 8.13.2 jala kotlin-stdlib 2.2.0 internamente — requiere force en resolutionStrategy"
+    }
+  ],
+
+  "plugin_declaration": {
+    "modern": {
+      "root_build": "plugins { id('...') version '...' apply false }",
+      "app_build":  "plugins { id('...') }",
+      "desc": "Versiones declaradas en raíz, app hereda sin versión — AGP 8.x+"
+    },
+    "legacy": {
+      "root_build": "buildscript { classpath '...' }",
+      "app_build":  "apply plugin: '...'",
+      "desc": "Estilo antiguo — funcional pero no recomendado"
+    }
+  },
+
+  "kapt_vs_ksp": {
+    "kapt": {
+      "status": "deprecated",
+      "kotlin_max": "1.9.x",
+      "issue": "No soporta Kotlin 2.0+ language version",
+      "error": "Kapt currently doesn't support language version 2.0+"
+    },
+    "ksp": {
+      "status": "recommended",
+      "kotlin_min": "1.9.0",
+      "plugin": "com.google.devtools.ksp",
+      "version_format": "{kotlin_version}-{ksp_release}",
+      "room_min": "2.6.1"
+    }
+  },
+
+  "repositories": {
+    "settings_gradle": [
+      "google()",
+      "mavenCentral()",
+      "gradlePluginPortal()"
+    ],
+    "order_matters": true,
+    "note": "gradlePluginPortal al final mejora velocidad de build"
+  },
+
+  "common_errors": [
+    {
+      "error": "Cannot add extension with name 'kotlin'",
+      "cause": "Kotlin plugin aplicado dos veces",
+      "fix":   "Verificar que no esté en buildscript Y en plugins{} simultáneamente"
+    },
+    {
+      "error": "Plugin already on classpath with different version",
+      "cause": "Versión de kapt/kotlin diferente entre root y app",
+      "fix":   "Usar id('org.jetbrains.kotlin.kapt') sin versión en app/build.gradle.kts"
+    },
+    {
+      "error": "Metadata version 2.2.0, expected 2.0.0",
+      "cause": "AGP moderno jala kotlin-stdlib 2.2.0 pero el compilador es 2.0.x",
+      "fix":   "resolutionStrategy.force('org.jetbrains.kotlin:kotlin-stdlib:2.0.21')"
+    },
+    {
+      "error": "Build was configured to prefer settings repositories",
+      "cause": "allprojects{repositories{}} en root cuando ya están en settings.gradle.kts",
+      "fix":   "Eliminar bloque allprojects{} del root build.gradle.kts"
+    },
+    {
+      "error": "ClassNotFoundException: MainActivity",
+      "cause": "android:name en AndroidManifest no coincide con el nombre del archivo .kt",
+      "fix":   "Verificar que android:name='.ActivityMAin' si el archivo es ActivityMAin.kt"
+    }
+  ],
+
+  "java_home": {
+    "recommended": "Eclipse Adoptium JDK 17",
+    "path_windows": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.16.8-hotspot",
+    "set_permanent": "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\" /v JAVA_HOME /t REG_SZ /d \"{path}\" /f"
+  }
+}

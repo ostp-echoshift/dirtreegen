@@ -1,0 +1,138 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Chips / Filters (ESTÉTICA MEJORADA)
+   styles/components/chips.css
+   - Layout de dos columnas
+   - Scroll interno con altura fija
+   - Indicadores visuales ▣/▢
+ ═══════════════════════════════════════════════════════ */
+.chips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  padding: var(--sp-md);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.chips::-webkit-scrollbar { width: 6px; }
+.chips::-webkit-scrollbar-track { background: var(--bg-root); border-radius: 3px; }
+.chips::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.chips::-webkit-scrollbar-thumb:hover { background: var(--ostp-primary); }
+
+.chip-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-xs);
+  margin-bottom: var(--sp-xs);
+}
+
+.chip {
+  padding: 6px 10px;
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  transition: all var(--t-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  user-select: none;
+  position: relative;
+  min-height: 32px;
+}
+
+.chip:hover {
+  border-color: var(--ostp-primary);
+  color: var(--ostp-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,255,144,0.15);
+}
+
+.chip.on {
+  background: linear-gradient(135deg, rgba(0,255,144,0.15), rgba(88,166,255,0.1));
+  color: var(--ostp-primary);
+  border-color: var(--ostp-primary);
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(0,255,144,0.25);
+}
+
+.chip-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.chip-icon { font-size: var(--fs-base); filter: grayscale(0.3); transition: filter var(--t-base); }
+.chip.on .chip-icon { filter: grayscale(0) drop-shadow(0 0 4px var(--ostp-primary)); }
+.chip-label { font-weight: 600; }
+.chip-check { font-size: var(--fs-base); opacity: 0.4; transition: opacity var(--t-fast); margin-left: 4px; min-width: 14px; text-align: right; }
+.chip.on .chip-check { opacity: 1; color: var(--ostp-primary); font-weight: 700; }
+
+.chip[data-e=""] {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(0,255,144,0.2), rgba(0,255,144,0.1));
+  border-color: var(--ostp-primary);
+  color: var(--ostp-primary);
+  font-weight: 700;
+}
+
+.chip[data-e=""].on {
+  background: linear-gradient(135deg, rgba(0,255,144,0.3), rgba(0,255,144,0.15));
+  box-shadow: 0 0 16px rgba(0,255,144,0.4);
+}
+
+.chip[data-risk="c"] { border-color: var(--risk-critical); color: var(--risk-critical); border-width: 2px; }
+.chip[data-risk="c"].on { background: rgba(255,107,107,0.15); border-color: var(--risk-critical); box-shadow: 0 0 12px rgba(255,107,107,0.3); }
+.chip[data-risk="h"] { border-color: var(--risk-high); color: var(--risk-high); }
+.chip[data-risk="h"].on { background: rgba(255,142,142,0.15); border-color: var(--risk-high); box-shadow: 0 0 10px rgba(255,142,142,0.25); }
+.chip[data-risk="m"] { border-color: var(--risk-medium); color: var(--risk-medium); }
+.chip[data-risk="m"].on { background: rgba(210,153,34,0.15); border-color: var(--risk-medium); box-shadow: 0 0 10px rgba(210,153,34,0.25); }
+.chip[data-risk="l"] { border-color: var(--risk-low); color: var(--risk-low); }
+.chip[data-risk="l"].on { background: rgba(61,79,95,0.15); border-color: var(--risk-low); box-shadow: 0 0 8px rgba(61,79,95,0.2); }
+
+.chip-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-xs);
+  padding-top: var(--sp-sm);
+  border-top: 1px solid var(--border-light);
+  margin-top: var(--sp-xs);
+}
+
+.chip-btn {
+  padding: 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--t-base);
+}
+
+.chip-btn:hover {
+  border-color: var(--ostp-secondary);
+  color: var(--ostp-secondary);
+  background: rgba(88,166,255,0.08);
+  transform: translateY(-1px);
+}
+
+.chip-btn:active { transform: scale(0.98); }
+
+.chip-btn:first-child { border-color: var(--ostp-primary); color: var(--ostp-primary); }
+.chip-btn:first-child:hover { background: rgba(0,255,144,0.1); }

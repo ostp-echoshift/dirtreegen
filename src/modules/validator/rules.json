@@ -1,0 +1,143 @@
+{
+  "version": "1.0",
+  "description": "Reglas de validación activas del OSTP DevTool Validator",
+  "author": "@echoShift · QUANTUM.qnu",
+
+  "version_rules": [
+    {
+      "id":       "kotlin-version",
+      "name":     "Kotlin",
+      "source":   "libs.versions.toml",
+      "regex":    "kotlin\\s*=\\s*\"([^\"]+)\"",
+      "expected": ["2.0.21", "2.2.0"],
+      "severity": "error",
+      "fix":      "Actualizar kotlin en libs.versions.toml"
+    },
+    {
+      "id":       "agp-version",
+      "name":     "AGP",
+      "source":   "libs.versions.toml",
+      "regex":    "agp\\s*=\\s*\"([^\"]+)\"",
+      "expected": ["8.7.3", "8.13.2"],
+      "severity": "warn",
+      "fix":      "Actualizar agp en libs.versions.toml"
+    },
+    {
+      "id":       "ksp-version",
+      "name":     "KSP",
+      "source":   "app/build.gradle.kts",
+      "regex":    "com\\.google\\.devtools\\.ksp.*version.*\"([^\"]+)\"",
+      "must_match_kotlin_prefix": true,
+      "severity": "error",
+      "fix":      "KSP version debe iniciar con la misma versión de Kotlin. Ej: Kotlin 2.0.21 → KSP 2.0.21-1.0.28"
+    },
+    {
+      "id":       "room-version",
+      "name":     "Room",
+      "source":   "app/build.gradle.kts",
+      "regex":    "room[^:]*:([0-9.]+)",
+      "expected": ["2.6.1", "2.7.0"],
+      "severity": "warn",
+      "fix":      "Room 2.7.0 recomendado para KSP. Room 2.6.1 requiere kapt"
+    },
+    {
+      "id":       "java-version",
+      "name":     "JVM Target",
+      "source":   "app/build.gradle.kts",
+      "regex":    "jvmTarget.*JVM_(\\d+)|jvmTarget\\s*=\\s*\"(\\d+)\"",
+      "expected": ["17", "JVM_17"],
+      "severity": "warn",
+      "fix":      "Usar JDK 17 — Eclipse Adoptium recomendado"
+    }
+  ],
+
+  "annotation_processor_rules": [
+    {
+      "id":       "no-kapt-kotlin2",
+      "name":     "kapt con Kotlin 2.x",
+      "detect":   "kapt\\(",
+      "source":   "app/build.gradle.kts",
+      "severity": "error",
+      "message":  "kapt no soporta Kotlin 2.0+. Migrar a KSP",
+      "fix":      "Reemplazar kapt(\"androidx.room:room-compiler:x\") por ksp(\"androidx.room:room-compiler:x\")"
+    },
+    {
+      "id":       "ksp-preferred",
+      "name":     "KSP activo",
+      "detect":   "com\\.google\\.devtools\\.ksp",
+      "source":   "app/build.gradle.kts",
+      "severity": "ok",
+      "message":  "KSP correctamente configurado"
+    }
+  ],
+
+  "nav_id_rules": [
+    {
+      "id":       "nav-menu-match",
+      "name":     "nav_graph ↔ bottom_nav_menu",
+      "file_a":   "nav_graph.xml",
+      "file_b":   "bottom_nav_menu.xml",
+      "regex":    "android:id=\"@\\+id\\/([^\"]+)\"",
+      "severity": "error",
+      "message":  "Los IDs deben ser idénticos en ambos archivos para que setupWithNavController funcione",
+      "fix":      "Alinear IDs: si menu tiene nav_home, nav_graph también debe tener nav_home"
+    },
+    {
+      "id":       "start-destination-exists",
+      "name":     "startDestination válido",
+      "file_a":   "nav_graph.xml",
+      "regex":    "app:startDestination=\"@id\\/([^\"]+)\"",
+      "must_exist_in_same_file": true,
+      "severity": "error",
+      "fix":      "El ID referenciado en startDestination debe existir como fragment en nav_graph.xml"
+    }
+  ],
+
+  "manifest_rules": [
+    {
+      "id":       "activity-name-match",
+      "name":     "Activity name vs archivo .kt",
+      "file":     "AndroidManifest.xml",
+      "regex":    "android:name=\"\\.([^\"]+)\"",
+      "must_match_kt": true,
+      "severity": "error",
+      "message":  "android:name en Manifest debe coincidir con el nombre del archivo .kt",
+      "fix":      "Si el archivo es ActivityMAin.kt → android:name=\".ActivityMAin\""
+    },
+    {
+      "id":       "exported-launcher",
+      "name":     "android:exported en launcher",
+      "file":     "AndroidManifest.xml",
+      "detect":   "android.intent.action.MAIN",
+      "requires": "android:exported=\"true\"",
+      "severity": "error",
+      "fix":      "Agregar android:exported=\"true\" a la activity con intent-filter MAIN/LAUNCHER"
+    }
+  ],
+
+  "security_rules": [
+    {
+      "id":       "no-secrets-in-code",
+      "name":     "Secrets en código",
+      "patterns": ["password", "secret", "api_key", "apikey", "token", ".env"],
+      "severity": "critical",
+      "message":  "Archivo potencialmente contiene credenciales",
+      "fix":      "Mover a local.properties o variables de entorno. Agregar al .gitignore"
+    },
+    {
+      "id":       "local-properties-gitignore",
+      "name":     "local.properties en .gitignore",
+      "file":     ".gitignore",
+      "must_contain": "local.properties",
+      "severity": "warn",
+      "fix":      "Agregar local.properties al .gitignore para no exponer sdk.dir"
+    }
+  ],
+
+  "risk_levels": {
+    "critical": { "label": "🔥🔥 CRITICAL", "color": "#ff6b6b", "stop_build": true },
+    "error":    { "label": "🔥 ERROR",      "color": "#ff8e8e", "stop_build": true },
+    "warn":     { "label": "⚠ WARNING",    "color": "#d29922", "stop_build": false },
+    "ok":       { "label": "✓ OK",         "color": "#00ff90", "stop_build": false }
+  }
+}

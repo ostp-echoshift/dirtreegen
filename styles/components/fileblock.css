@@ -1,0 +1,46 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — File Block (cmd/export view)
+   styles/components/fileblock.css
+═══════════════════════════════════════════════════════ */
+
+.cmd-block {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  color: var(--text);
+  position: relative;
+}
+
+.cmd-copy {
+  position: absolute;
+  top: 8px; right: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  font-family: var(--font-ui);
+}
+
+.cmd-copy:hover {
+  color: var(--ostp-primary);
+  border-color: var(--ostp-primary);
+}
+
+.v-export {
+  padding: var(--sp-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: var(--ostp-primary);
+}
+
+.v-cmd { padding: var(--sp-md); }

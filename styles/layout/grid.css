@@ -1,0 +1,29 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Grid Utilities
+   styles/layout/grid.css
+   @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ */
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-md); }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--sp-md); }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--sp-sm); }
+
+.flex     { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-1   { flex: 1; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--sp-sm); }
+.gap-md { gap: var(--sp-md); }
+.gap-lg { gap: var(--sp-lg); }
+
+.p-sm  { padding: var(--sp-sm); }
+.p-md  { padding: var(--sp-md); }
+.p-lg  { padding: var(--sp-lg); }
+.px-md { padding-left: var(--sp-md); padding-right: var(--sp-md); }
+.py-sm { padding-top: var(--sp-sm); padding-bottom: var(--sp-sm); }
+
+.border-b { border-bottom: 1px solid var(--border); }
+.border-t { border-top: 1px solid var(--border); }
+.border-r { border-right: 1px solid var(--border); }

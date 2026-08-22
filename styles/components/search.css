@@ -1,0 +1,78 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Search
+   styles/components/search.css
+═══════════════════════════════════════════════════════ */
+
+.search-wrap {
+  position: relative;
+  margin-top: var(--sp-sm);
+}
+
+.search-wrap input {
+  width: 100%;
+  background: var(--bg-root);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 7px 10px 7px 28px;
+  border-radius: var(--r-md);
+  font-size: var(--fs-base);
+  font-family: var(--font-mono);
+  outline: none;
+  transition: border var(--t-base);
+}
+
+.search-wrap input:focus { border-color: var(--ostp-primary); }
+.search-wrap input::placeholder { color: var(--border); }
+
+.search-icon {
+  position: absolute;
+  left: 9px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: var(--fs-lg);
+  pointer-events: none;
+}
+
+/* ── Results dropdown ─────────────────────────────── */
+.search-results {
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  z-index: 50;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-top: 2px;
+  max-height: 220px;
+  overflow-y: auto;
+  display: none;
+}
+
+.sr-item {
+  padding: 7px 10px;
+  font-size: var(--fs-md);
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  transition: background var(--t-fast);
+}
+
+.sr-item:hover { background: rgba(0,255,144,0.06); }
+.sr-item:last-child { border-bottom: none; }
+
+.sr-name {
+  color: var(--ostp-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+}
+
+.sr-snip {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,4 +1,8 @@
-# OSTP · DevTool v1.0
+**OSTP @echoShift / QUANTUM.qnu**.
+
+---
+
+### 📜  `README.md` 
 
 
 <div align="center">
@@ -7,7 +11,7 @@
   <img src="assets/svg/logo-ostp.svg" alt="OSTP @echoShift Logo" width="120" height="120" />
 
   # ⚡ OSTP · DevTool `v1.1.0`
-  ### **Oficina de Soluciones Técnicas y Prototipado**
+  ### **Operator Syncronic Technology Professional**
   **Quantum Operating System — DevTool Engine**
 
   <sub>Desarrollado por **@echoShift** · Zapopan, Jalisco, México</sub>
@@ -174,7 +178,7 @@ Abre en tu navegador la dirección: `http://localhost:8080`
 ---
 
 OSTP DevTool es un desarrollo libre bajo Licencia MIT.
-OSTP · Oficina de Soluciones Técnicas y Prototipado
+OSTP · Operator Syncronic Technology Professional
 
 
 ---

@@ -2,10 +2,13 @@
 <html lang="es" data-theme="dark">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>OSTP · DevTool · @echoShift</title>
+  
+  <!-- Favicon explícito — elimina el error 404 -->
   <link rel="icon" type="image/svg+xml" href="assets/svg/logo-ostp.svg"/>
-  <link rel="alternate icon" href="favicon.ico"/>
+  <link rel="alternate icon" href="assets/svg/ostp-seal.svg"/>
+  
   <link rel="stylesheet" href="styles/main.css"/>
 </head>
 <body>
@@ -30,9 +33,13 @@
         <button class="btn btn-ghost btn-sm" id="bDark" title="Tema Dark (Ctrl+D)">◐</button>
         <button class="btn btn-ghost btn-sm" id="bQuantum" title="Tema Quantum (Ctrl+Q)">✦</button>
         <button class="btn btn-ghost btn-sm" id="bAbout" title="Acerca de">ⓘ</button>
+        
+        <!-- Botón Save As unificado (reemplaza bMd y bTxt) -->
         <button class="btn btn-gold" id="bSaveAs" disabled title="Guardar en ruta específica (Save As)">💾 Save As</button>
         <button class="btn btn-primary" id="bCmd" disabled>⬡ PS1</button>
-        <input type="file" id="fi" webkitdirectory multiple style="display:none"/>
+        
+        <!-- Atributo 'name' para linters de GitHub -->
+        <input type="file" id="fi" name="project_upload_1" webkitdirectory multiple style="display:none"/>
       </div>
     </div>
 
@@ -43,17 +50,21 @@
         <div class="sidebar-section">
           <div class="label" style="margin-bottom:8px">Proyecto</div>
           <div class="upload-zone" id="uz">
-            <input type="file" webkitdirectory multiple id="fi2"/>
+            <!-- Atributo 'name' para linters -->
+            <input type="file" id="fi2" name="project_upload_2" webkitdirectory multiple/>
             <span class="upload-zone-icon">📂</span>
             <div class="upload-zone-text">Arrastra una carpeta</div>
             <div class="upload-zone-sub">o haz click aquí</div>
           </div>
           <div class="search-wrap">
             <span class="search-icon">⌕</span>
-            <input type="text" id="si" placeholder="ostp search..."/>
+            <!-- Atributo 'name' para linters -->
+            <input type="text" id="si" name="ostp_search" placeholder="ostp search..."/>
             <div class="search-results" id="sr"></div>
           </div>
         </div>
+        
+        <!-- Contenedor vacío — los 57 chips se renderizan dinámicamente desde classify.json -->
         <div class="chips" id="chips"></div>
         
         <!-- Stats -->
@@ -74,19 +85,19 @@
           <div class="view-tabs">
             <button class="vt on" id="vt-tree">🌳 TREE</button>
             <button class="vt" id="vt-content">📄 READ</button>
-            <button class="vt" id="vt-export"> EXPORT</button>
+            <button class="vt" id="vt-export">📤 EXPORT</button>
             <button class="vt" id="vt-validate">✓ VALIDATE</button>
             <button class="vt" id="vt-cmd">⬡ PS1</button>
           </div>
         </div>
         <div id="output">
-          <!-- FIX: Estado vacío sin botón redundante -->
+          <!-- Estado vacío limpio — sin botón redundante -->
           <div class="empty">
             <div class="empty-icon">⬡</div>
             <div style="font-size:14px;font-weight:700;color:var(--text)">OSTP · DevTool v1.1</div>
-            <div class="mono-sm" style="color:var(--text-muted);margin-top:4px">Oficina de Soluciones Técnicas y Prototipado</div>
+            <div class="mono-sm" style="color:var(--text-muted);margin-top:4px">Operator Syncronic Technology Professional</div>
             <div class="mono-sm" style="color:var(--ostp-warn);margin-top:16px;font-size:10px;letter-spacing:1px">
-               FLUJO: CARGAR (IZQ) → ANALIZAR → SAVE AS → EDITAR EN SUBLIME TEXT
+              ⚠ FLUJO: CARGAR (IZQ) → ANALIZAR → SAVE AS → EDITAR EN SUBLIME TEXT
             </div>
           </div>
         </div>
@@ -115,7 +126,7 @@
       <div class="modal">
         <div class="modal-header">
           <span class="modal-title">⚠ Error detectado</span>
-          <button class="modal-close" onclick="closeModal('modalError')"></button>
+          <button class="modal-close" onclick="closeModal('modalError')">✕</button>
         </div>
         <div id="modalErrorBody" style="font-size:13px;line-height:1.7;color:var(--text)"></div>
         <div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end">
@@ -123,6 +134,7 @@
         </div>
       </div>
     </div>
+    
     <div class="modal-overlay" id="modalShortcuts">
       <div class="modal">
         <div class="modal-header">
@@ -132,6 +144,7 @@
         <div id="modalShortcutsBody" style="font-size:12px;font-family:var(--font-mono)"></div>
       </div>
     </div>
+    
     <div class="modal-overlay" id="modalAbout">
       <div class="modal">
         <div class="modal-header">
@@ -139,7 +152,7 @@
           <button class="modal-close" onclick="closeModal('modalAbout')">✕</button>
         </div>
         <div style="font-size:13px;line-height:1.8;color:var(--text)">
-          <p style="color:var(--ostp-primary);font-family:var(--font-mono);margin-bottom:12px">Oficina de Soluciones Técnicas y Prototipado</p>
+          <p style="color:var(--ostp-primary);font-family:var(--font-mono);margin-bottom:12px">Operator Syncronic Technology Professional</p>
           <p>@echoShift · QUANTUM.qnu · Zapopan, Jalisco</p>
           <p style="color:var(--text-muted);margin-top:8px;font-size:11px">Elimina el punto ciego entre comunicación,<br>construcción y resultados en proyectos de desarrollo.</p>
           <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:10px;color:var(--ostp-gold)">
@@ -149,7 +162,7 @@
       </div>
     </div>
     
-    <!-- FIX: Modal Save As -->
+    <!-- Modal Save As — diálogo nativo del SO para elegir ruta -->
     <div class="modal-overlay" id="modalSaveAs">
       <div class="modal">
         <div class="modal-header">
@@ -161,7 +174,8 @@
           
           <div style="margin-bottom:12px">
             <label class="label" style="display:block;margin-bottom:6px">Formato de salida</label>
-            <select id="saveAsFormat" style="width:100%;background:var(--bg-root);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:var(--r-md);font-family:var(--font-mono)">
+            <!-- Atributo 'name' para linters -->
+            <select id="saveAsFormat" name="save_as_format" style="width:100%;background:var(--bg-root);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:var(--r-md);font-family:var(--font-mono)">
               <option value="md">Markdown (.md) — Recomendado para LLMs</option>
               <option value="txt">Texto Plano (.txt)</option>
               <option value="ps1">PowerShell Script (.ps1)</option>
@@ -170,7 +184,8 @@
 
           <div style="margin-bottom:16px">
             <label class="label" style="display:block;margin-bottom:6px">Nombre del archivo</label>
-            <input type="text" id="saveAsName" value="quantum_ostp_export" style="width:100%;background:var(--bg-root);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:var(--r-md);font-family:var(--font-mono)"/>
+            <!-- Atributo 'name' para linters -->
+            <input type="text" id="saveAsName" name="save_as_filename" value="quantum_ostp_export" style="width:100%;background:var(--bg-root);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:var(--r-md);font-family:var(--font-mono)"/>
           </div>
 
           <div style="background:rgba(210,153,34,0.06);border:1px solid rgba(210,153,34,0.2);border-radius:var(--r-md);padding:10px;font-size:11px;color:var(--ostp-warn)">

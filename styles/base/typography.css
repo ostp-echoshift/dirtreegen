@@ -1,10 +1,9 @@
-/* ═══════════════════════════════════════════════════════
+﻿/* ═══════════════════════════════════════════════════════
    OSTP DevTool — Typography
    styles/base/typography.css
    @echoShift · QUANTUM.qnu
 ═══════════════════════════════════════════════════════ */
 
-/* ── Labels / Caps ────────────────────────────────── */
 .label {
   font-size: var(--fs-xs);
   letter-spacing: 2px;
@@ -19,7 +18,6 @@
   color: var(--text-muted);
 }
 
-/* ── Monospace ────────────────────────────────────── */
 .mono {
   font-family: var(--font-mono);
   font-size: var(--fs-base);
@@ -30,7 +28,6 @@
   font-size: var(--fs-md);
 }
 
-/* ── Brand ────────────────────────────────────────── */
 .brand-gradient {
   background: linear-gradient(45deg, var(--ostp-primary), var(--ostp-secondary));
   -webkit-background-clip: text;
@@ -38,26 +35,22 @@
   background-clip: text;
 }
 
-/* ── Risk Labels ──────────────────────────────────── */
 .risk-c { color: var(--risk-critical); }
 .risk-h { color: var(--risk-high); }
 .risk-m { color: var(--risk-medium); }
 .risk-l { color: var(--risk-low); }
 
-/* ── Highlight ────────────────────────────────────── */
 .hl {
   color: var(--ostp-primary);
   font-weight: 700;
 }
 
-/* ── Truncate ─────────────────────────────────────── */
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* ── Code ─────────────────────────────────────────── */
 code {
   font-family: var(--font-mono);
   font-size: var(--fs-base);

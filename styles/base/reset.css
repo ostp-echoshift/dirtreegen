@@ -1,4 +1,4 @@
-/* ═══════════════════════════════════════════════════════
+﻿/* ═══════════════════════════════════════════════════════
    OSTP DevTool — Reset
    styles/base/reset.css
    @echoShift · QUANTUM.qnu
@@ -30,7 +30,6 @@ input, select, textarea { font-family: inherit; }
 ul, ol { list-style: none; }
 img, svg { display: block; }
 
-/* ── Scrollbar ────────────────────────────────────── */
 ::-webkit-scrollbar       { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }

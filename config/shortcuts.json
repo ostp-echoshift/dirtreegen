@@ -1,23 +1,19 @@
-{
+﻿{
   "shortcuts": [
-
-    { "key": "Ctrl+O",     "action": "triggerOpen",      "desc": "Abrir carpeta" },
-    { "key": "Ctrl+F",     "action": "focusSearch",      "desc": "Enfocar búsqueda" },
-    { "key": "Escape",     "action": "closeSearch",      "desc": "Cerrar búsqueda / deselect" },
-
-    { "key": "Ctrl+1",     "action": "view:tree",        "desc": "Vista TREE" },
-    { "key": "Ctrl+2",     "action": "view:content",     "desc": "Vista READ" },
-    { "key": "Ctrl+3",     "action": "view:export",      "desc": "Vista EXPORT" },
-    { "key": "Ctrl+4",     "action": "view:validate",    "desc": "Vista VALIDATE" },
-    { "key": "Ctrl+5",     "action": "view:cmd",         "desc": "Vista PS1" },
-
-    { "key": "Ctrl+M",     "action": "export:md",        "desc": "Exportar Markdown" },
-    { "key": "Ctrl+T",     "action": "export:txt",       "desc": "Exportar TXT" },
-
-    { "key": "Ctrl+L",     "action": "clearLog",         "desc": "Limpiar terminal" },
-    { "key": "Ctrl+\\",   "action": "toggleSidebar",    "desc": "Mostrar/ocultar sidebar" },
-
-    { "key": "Ctrl+D",     "action": "theme:dark",       "desc": "Tema Dark" },
-    { "key": "Ctrl+Q",     "action": "theme:quantum",    "desc": "Tema Quantum" }
+    { "key": "Ctrl+O", "action": "triggerOpen", "desc": "Abrir carpeta" },
+    { "key": "Ctrl+F", "action": "focusSearch", "desc": "Enfocar búsqueda" },
+    { "key": "Escape", "action": "closeSearch", "desc": "Cerrar búsqueda" },
+    { "key": "Ctrl+1", "action": "view:tree", "desc": "Vista TREE" },
+    { "key": "Ctrl+2", "action": "view:content", "desc": "Vista READ" },
+    { "key": "Ctrl+3", "action": "view:export", "desc": "Vista EXPORT" },
+    { "key": "Ctrl+4", "action": "view:validate", "desc": "Vista VALIDATE" },
+    { "key": "Ctrl+5", "action": "view:cmd", "desc": "Vista PS1" },
+    { "key": "Ctrl+M", "action": "export:md", "desc": "Exportar MD" },
+    { "key": "Ctrl+T", "action": "export:txt", "desc": "Exportar TXT" },
+    { "key": "Ctrl+L", "action": "clearLog", "desc": "Limpiar terminal" },
+    { "key": "Ctrl+\\", "action": "toggleSidebar", "desc": "Sidebar" },
+    { "key": "Ctrl+D", "action": "theme:dark", "desc": "Tema Dark" },
+    { "key": "Ctrl+Q", "action": "theme:quantum", "desc": "Tema Quantum" },
+    { "key": "Ctrl+/", "action": "modal:shortcuts", "desc": "Ver shortcuts" }
   ]
 }

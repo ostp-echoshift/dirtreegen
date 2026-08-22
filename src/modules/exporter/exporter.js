@@ -8,6 +8,33 @@ import { State }         from '../../core/state.js';
 import { Events }        from '../../core/events.js';
 import { buildTreeStr }  from '../tree/tree.js';
 
+// ── Mapeo de extensiones a lenguaje ────────────────────────
+const LANG_MAP = {
+  '.json': 'json',
+  '.py': 'python',
+  '.ps1': 'powershell',
+  '.md': 'markdown',
+  '.html': 'html',
+  '.css': 'css',
+  '.js': 'javascript',
+  '.txt': 'text',
+  '.log': 'text',
+  '.gitkeep': 'text',
+  '.ico': 'text',
+  '.png': 'text',
+  '.blend': 'text',
+  '.xml': 'xml',
+  '.yaml': 'yaml',
+  '.yml': 'yaml',
+  '.toml': 'toml',
+  '.svg': 'svg',
+};
+
+function getLangTag(filePath) {
+  const ext = filePath.slice(filePath.lastIndexOf('.')).toLowerCase();
+  return LANG_MAP[ext] || '';
+}
+
 export function initExporter() {
   Events.on('export:md',  () => doExportMd());
   Events.on('export:txt', () => doExportTxt());
@@ -25,7 +52,16 @@ export function buildMd() {
   const items = State.idx.filter(i => i.content && i.content.trim());
   if (items.length) {
     s += '-\n\n';
-    items.forEach(i => { s += `### ${i.path}\n\`\`\`\n${i.content}\n\`\`\`\n\n`; });
+    items.forEach(i => {
+      const lang = getLangTag(i.path);
+      s += `### ${i.path}\n`;
+      if (lang) {
+        s += '```' + lang + '\n';
+      } else {
+        s += '```\n';
+      }
+      s += i.content + '\n```\n\n';
+    });
   }
 
   s += '\n          ________________________________________\n';
@@ -54,8 +90,15 @@ function renderExport() {
   out.appendChild(d);
 }
 
-function doExportMd()  { saveFile(buildMd(),  'quantum_ostp.md',  'text/markdown'); Events.emit('log:add', { type:'ok', msg:'✓ Export: quantum_ostp.md' }); }
-function doExportTxt() { saveFile(buildTxt(), 'quantum_ostp.txt', 'text/plain');    Events.emit('log:add', { type:'ok', msg:'✓ Export: quantum_ostp.txt' }); }
+function doExportMd()  { 
+  saveFile(buildMd(),  'quantum_ostp.md',  'text/markdown'); 
+  Events.emit('log:add', { type:'ok', msg:'✓ Export: quantum_ostp.md' }); 
+}
+
+function doExportTxt() { 
+  saveFile(buildTxt(), 'quantum_ostp.txt', 'text/plain');    
+  Events.emit('log:add', { type:'ok', msg:'✓ Export: quantum_ostp.txt' }); 
+}
 
 function saveFile(c, n, t) {
   const b = new Blob([c], { type: t + ';charset=utf-8' });

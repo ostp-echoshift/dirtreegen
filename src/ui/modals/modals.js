@@ -1,4 +1,4 @@
-/* ═══════════════════════════════════════════════════════
+﻿/* ═══════════════════════════════════════════════════════
    OSTP DevTool — Modals UI
    src/ui/modals/modals.js
    @echoShift · QUANTUM.qnu
@@ -7,14 +7,12 @@
 import { Events } from '../../core/events.js';
 
 export function initModals() {
-  // Cerrar modal al click fuera
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', e => {
       if (e.target === overlay) closeModal(overlay.id);
     });
   });
 
-  // Cerrar con Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       document.querySelectorAll('.modal-overlay.open').forEach(m => {
@@ -23,13 +21,11 @@ export function initModals() {
     }
   });
 
-  // Escuchar eventos del sistema
   Events.on('modal:error',     ({ title, body, fix }) => openModalError(title, body, fix));
-  Events.on('modal:shortcuts', ()                     => openModalShortcuts());
-  Events.on('modal:about',     ()                     => openModalAbout());
+  Events.on('modal:shortcuts', () => openModalShortcuts());
+  Events.on('modal:about',     () => openModalAbout());
 }
 
-// ── Open / Close ──────────────────────────────────────
 export function openModal(id) {
   const el = document.getElementById(id);
   if (el) el.classList.add('open');
@@ -40,18 +36,15 @@ export function closeModal(id) {
   if (el) el.classList.remove('open');
 }
 
-// Exponer globalmente para uso inline en HTML
 window.closeModal = closeModal;
 window.openModal  = openModal;
 
-// ── Modal: Error con Fix ───────────────────────────────
 export function openModalError(title, body, fix) {
   const el = document.getElementById('modalError');
   if (!el) return;
 
   const titleEl = el.querySelector('.modal-title');
   const bodyEl  = document.getElementById('modalErrorBody');
-  const fixBtn  = document.getElementById('modalErrorFix');
 
   if (titleEl) titleEl.textContent = title || '⚠ Error detectado';
 
@@ -67,12 +60,9 @@ export function openModalError(title, body, fix) {
     `;
   }
 
-  if (fixBtn) fixBtn.style.display = fix ? 'inline-flex' : 'none';
-
   openModal('modalError');
 }
 
-// ── Modal: Shortcuts ──────────────────────────────────
 export async function openModalShortcuts() {
   const bodyEl = document.getElementById('modalShortcutsBody');
   if (!bodyEl) return;
@@ -98,12 +88,10 @@ export async function openModalShortcuts() {
   openModal('modalShortcuts');
 }
 
-// ── Modal: About ──────────────────────────────────────
 export function openModalAbout() {
   openModal('modalAbout');
 }
 
-// ── Utils ─────────────────────────────────────────────
 function esc(t) {
   return String(t)
     .replace(/&/g, '&amp;')

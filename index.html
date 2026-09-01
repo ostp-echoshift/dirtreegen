@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>OSTP · DevTool · @echoShift</title>
+  <link rel="icon" type="image/svg+xml" href="assets/svg/logo-ostp.svg"/>
+  <link rel="alternate icon" href="assets/svg/ostp-seal.svg"/>
+  <link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body>
+  <div id="app">
+    <!-- ── TOPBAR ─────────────────────────────────────── -->
+    <div id="topbar">
+      <div class="topbar-brand">
+        <div class="topbar-brand-dot"></div>
+        <div>
+          <div class="topbar-brand-name">OSTP · DevTool</div>
+          <div class="topbar-brand-sub">@echoShift · QUANTUM.qnu</div>
+        </div>
+      </div>
+      <div class="topbar-cmd">
+        <div class="topbar-cmd-inner">
+          <span class="prompt">→</span>
+          <span id="cmdLine">ostp devtool --ready</span>
+        </div>
+      </div>
+      <div class="topbar-actions"> <button class="btn btn-ghost btn-sm" id="bShortcuts" title="Keyboard Shortcuts (Ctrl+/)"></button> <button class="btn btn-ghost btn-sm" id="bDark" title="Tema Dark (Ctrl+D)">◐</button> <button class="btn btn-ghost btn-sm" id="bQuantum" title="Tema Quantum (Ctrl+Q)">✦</button> <button class="btn btn-ghost btn-sm" id="bAbout" title="Acerca de">ⓘ</button> <button class="btn btn-vino btn-sm" id="bTaking" disabled title="Taking Process - Ver resumen de extracción">⚡ Taking</button> <button class="btn btn-gold" id="bSaveAs" disabled title="Guardar en ruta específica (Save As)">💾 Save As</button> <button class="btn btn-primary" id="bCmd" disabled>OSTP PS1</button>
+        <input type="file" id="fi" webkitdirectory multiple style="display:none"/>
+      </div>
+    </div>
+
+    <!-- ── BODY ───────────────────────────────────────── -->
+    <div id="body">
+      <!-- ── SIDEBAR ─────────────────────────────────── -->
+      <div id="sidebar">
+        <div class="sidebar-section">
+          <div class="label" style="margin-bottom:8px">Proyecto</div>
+          <div class="upload-zone" id="uz">
+            <input type="file" webkitdirectory multiple id="fi2"/>
+            <span class="upload-zone-icon">📂</span>
+            <div class="upload-zone-text">Arrastra una carpeta</div>
+            <div class="upload-zone-sub">o haz click aquí</div>
+          </div>
+          <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input type="text" id="si" placeholder="ostp search..."/>
+            <div class="search-results" id="sr"></div>
+          </div>
+        </div>
+        <div class="chips" id="chips"></div>
+        
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat-cell"><div class="stat-n" id="sT">0</div><div class="stat-l">Files</div></div>
+          <div class="stat-cell"><div class="stat-n" id="sF">0</div><div class="stat-l">Dirs</div></div>
+          <div class="stat-cell"><div class="stat-n" id="sC" style="color:var(--risk-critical)">0</div><div class="stat-l">Crit</div></div>
+          <div class="stat-cell"><div class="stat-n" id="sH" style="color:var(--risk-high)">0</div><div class="stat-l">High</div></div>
+        </div>
+        <div class="label" style="padding:6px 14px">Estructura</div>
+        <div id="file-tree"></div>
+      </div>
+
+      <!-- ── MAIN ─────────────────────────────────────── -->
+      <div id="main">
+        <div id="toolbar">
+          <div class="toolbar-path" id="tp">— sin proyecto —</div>
+          <div class="view-tabs"> <button class="vt on" id="vt-tree">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+  <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="currentColor"/>
+  <path d="M3 9h18" stroke="currentColor" opacity="0.3"/>
+</svg>
+          TREE
+        </button> <button class="vt" id="vt-content">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor"/>
+  <path d="M14 2v6h6" stroke="currentColor"/>
+  <path d="M8 13h8M8 16h6" stroke="currentColor"/>
+</svg>
+          CONTENT
+        </button> <button class="vt" id="vt-export">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor"/>
+  <path d="M17 8l-5-5-5 5" stroke="currentColor"/>
+  <path d="M12 3v12" stroke="currentColor"/>
+</svg>
+          EXPORT
+        </button> <button class="vt" id="vt-validate"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="M12 2L4 5v6c0 4.5 3.5 8.7 8 11 4.5-2.3 8-6.5 8-11V5l-8-3z" stroke="currentColor"/><path d="M8 12l3 3 5-5" stroke="currentColor"/></svg> VALIDATE</button> <button class="vt" id="vt-cmd">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+  <rect x="2" y="3" width="20" height="18" rx="3" stroke="currentColor"/>
+  <rect x="2" y="3" width="20" height="5" rx="3" fill="currentColor" opacity="0.2"/>
+  <circle cx="6" cy="5.5" r="1.2" fill="currentColor"/>
+  <circle cx="10.5" cy="5.5" r="1.2" fill="currentColor"/>
+  <circle cx="15" cy="5.5" r="1.2" fill="currentColor"/>
+  <path d="M6 13l4 3-4 3" stroke="currentColor"/>
+  <path d="M12 19h6" stroke="currentColor"/>
+</svg>
+          CMD
+        </button>
+          </div>
+        </div>
+        <div id="output">
+          <!-- FIX: Estado vacío sin botón redundante -->
+          <div class="empty">
+            <div class="empty-icon" style="width:120px;height:120px;margin:0 auto 20px">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600"><defs><linearGradient id="gCyan" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#00a8b3"/></linearGradient><linearGradient id="gPurple" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7b2eda"/><stop offset="100%" stop-color="#4a1285"/></linearGradient><linearGradient id="gMain" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="50%" stop-color="#a855f7"/><stop offset="100%" stop-color="#7b2eda"/></linearGradient><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="dynamic_metal" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1" result="blur" /><feSpecularLighting surfaceScale="6" specularConstant="1.2" specularExponent="35" 
+                          lighting-color="#ffffff" in="blur" result="specOut"><fePointLight id="light_source" x="500" y="500" z="300" /></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOutCombined" /><feComposite in="SourceGraphic" in2="specOutCombined" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" /></filter><filter id="shadow_soft" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.8"/></filter><filter id="glow_subtle" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="led_glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="rim_glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="glow_official" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="wing_grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#cccccc"/><stop offset="25%" stop-color="#ffffff"/><stop offset="50%" stop-color="#aaaaaa"/><stop offset="75%" stop-color="#666"/><stop offset="100%" stop-color="#333"/></linearGradient><radialGradient id="sphere_chrome" cx="38%" cy="28%" r="62%"><stop offset="0%" stop-color="#ffffff"/><stop offset="20%" stop-color="#d8d8d8"/><stop offset="55%" stop-color="#888"/><stop offset="80%" stop-color="#444"/><stop offset="100%" stop-color="#1a1a1a"/></radialGradient><linearGradient id="text_grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#aaaaaa"/><stop offset="35%" stop-color="#eeeeee"/><stop offset="60%" stop-color="#888888"/><stop offset="100%" stop-color="#444444"/></linearGradient><linearGradient id="text_sub_grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#777"/><stop offset="50%" stop-color="#aaa"/><stop offset="100%" stop-color="#444"/></linearGradient><linearGradient id="keel_grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#bbb"/><stop offset="40%" stop-color="#ffffff"/><stop offset="70%" stop-color="#888"/><stop offset="100%" stop-color="#333"/></linearGradient><linearGradient id="sweep_L" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0"><animate attributeName="offset" values="0;0.85;1" dur="4s" repeatCount="indefinite"/></stop><stop offset="0%" stop-color="#E8F4FF" stop-opacity="0.55"><animate attributeName="offset" values="0.05;0.9;1" dur="4s" repeatCount="indefinite"/></stop><stop offset="0%" stop-color="#ffffff" stop-opacity="0"><animate attributeName="offset" values="0.12;1;1" dur="4s" repeatCount="indefinite"/></stop></linearGradient><linearGradient id="sweep_R" x1="100%" y1="0%" x2="0%" y2="0%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0"><animate attributeName="offset" values="0;0.85;1" dur="4s" repeatCount="indefinite"/></stop><stop offset="0%" stop-color="#E8F4FF" stop-opacity="0.55"><animate attributeName="offset" values="0.05;0.9;1" dur="4s" repeatCount="indefinite"/></stop><stop offset="0%" stop-color="#ffffff" stop-opacity="0"><animate attributeName="offset" values="0.12;1;1" dur="4s" repeatCount="indefinite"/></stop></linearGradient><radialGradient id="core_pulse" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFF" /><stop offset="40%" stop-color="#00FFFF" /><stop offset="100%" stop-color="#002222" /></radialGradient><linearGradient id="hexBorder" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="50%" stop-color="#a855f7"/><stop offset="100%" stop-color="#7b2eda"/></linearGradient><filter id="hexGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect width="600" height="600" fill="#060606"/><g id="hexagon_container"><polygon points="300,40 520,170 520,430 300,560 80,430 80,170" 
+             fill="none" stroke="url(#hexBorder)" stroke-width="12" filter="url(#hexGlow)" 
+             stroke-linejoin="round"/><polygon points="300,40 520,170 520,430 300,560 80,430 80,170" 
+             fill="#0a0a0a" stroke="url(#gMain)" stroke-width="3" opacity="0.4" 
+             stroke-linejoin="round"/><g><animateTransform attributeName="transform" type="rotate" from="0 300 300" to="360 300 300" dur="12s" repeatCount="indefinite"/><circle cx="540" cy="300" r="6" fill="#00f0ff" filter="url(#glow)"/><circle cx="480" cy="80" r="4" fill="#a855f7" filter="url(#glow)"/><circle cx="120" cy="520" r="5" fill="#00f0ff" filter="url(#glow)"/><circle cx="60" cy="200" r="7" fill="#7b2eda" filter="url(#glow)"/></g><g><animateTransform attributeName="transform" type="rotate" from="360 300 300" to="0 300 300" dur="18s" repeatCount="indefinite"/><circle cx="300" cy="30" r="5" fill="#a855f7" filter="url(#glow)"/><circle cx="560" cy="450" r="6" fill="#00f0ff" filter="url(#glow)"/><circle cx="80" cy="150" r="4" fill="#7b2eda" filter="url(#glow)"/><circle cx="450" cy="570" r="5" fill="#00f0ff" filter="url(#glow)"/></g><polygon points="300,55 505,178 505,422 300,545 95,422 95,178" 
+             fill="none" stroke="url(#gCyan)" stroke-width="2" opacity="0.7" filter="url(#glow)"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="3s" repeatCount="indefinite"/></polygon><g transform="translate(300,300) scale(0.35) translate(-500,-500)"><g filter="url(#dynamic_metal)"><path d="M 400,470 L 40,360 L 40,410 L 400,520 Z" fill="url(#wing_grad)" stroke="#111" stroke-width="1.5" filter="url(#shadow_soft)"/><path d="M 400,470 L 40,360 L 40,410 L 400,520 Z" fill="url(#sweep_L)" opacity="0.9"/><path d="M 400,525 L 80,430 L 80,480 L 400,575 Z" fill="url(#wing_grad)" stroke="#111" stroke-width="1.5" filter="url(#shadow_soft)"/><path d="M 400,525 L 80,430 L 80,480 L 400,575 Z" fill="url(#sweep_L)" opacity="0.8"/><path d="M 400,580 L 120,490 L 120,530 L 400,620 Z" fill="url(#wing_grad)" stroke="#111" stroke-width="1.5" filter="url(#shadow_soft)"/><path d="M 400,580 L 120,490 L 120,530 L 400,620 Z" fill="url(#sweep_L)" opacity="0.7"/></g><g filter="url(#dynamic_metal)"><path d="M 600,470 L 960,360 L 960,410 L 600,520 Z" fill="url(#wing_grad)" stroke="#111" stroke-width="1.5" filter="url(#shadow_soft)"/><path d="M 600,470 L 960,360 L 960,410 L 600,520 Z" fill="url(#sweep_R)" opacity="0.9"/><path d="M 600,525 L 920,430 L 920,480 L 600,575 Z" fill="url(#wing_grad)" stroke="#111" stroke-width="1.5" filter="url(#shadow_soft)"/><path d="M 600,525 L 920,430 L 920,480 L 600,575 Z" fill="url(#sweep_R)" opacity="0.8"/><path d="M 600,580 L 880,490 L 880,530 L 600,620 Z" fill="url(#wing_grad)" stroke="#111" stroke-width="1.5" filter="url(#shadow_soft)"/><path d="M 600,580 L 880,490 L 880,530 L 600,620 Z" fill="url(#sweep_R)" opacity="0.7"/></g><g filter="url(#dynamic_metal)"><polygon points="500,680 384,570 418,550 500,643" fill="url(#keel_grad)" filter="url(#shadow_soft)"/><polygon points="500,680 616,570 582,550 500,643" fill="url(#keel_grad)" filter="url(#shadow_soft)"/><polygon points="500,720 384,640 418,622 500,703" fill="url(#keel_grad)" filter="url(#shadow_soft)"/><polygon points="500,720 616,640 582,622 500,703" fill="url(#keel_grad)" filter="url(#shadow_soft)"/><path d="M 500,780 L 480,680 L 520,680 Z" fill="url(#keel_grad)" stroke="#000" stroke-width="1.5"/><path d="M 500,810 L 485,740 L 515,740 Z" fill="#333" stroke="#000" stroke-width="1"/><polygon points="500,680 384,570 418,550 500,643" fill="none" filter="url(#led_glow)"><animate attributeName="stroke" values="#0A2040;#1A4A7A;#0A2040" dur="5s" begin="1s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="0;2;0" dur="5s" begin="1s" repeatCount="indefinite"/></polygon><polygon points="500,680 616,570 582,550 500,643" fill="none" filter="url(#led_glow)"><animate attributeName="stroke" values="#0A2040;#1A4A7A;#0A2040" dur="5s" begin="1s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="0;2;0" dur="5s" begin="1s" repeatCount="indefinite"/></polygon></g><g id="LABEL_SYSTEM"><text x="500" y="880" font-family="'Arial Black','Impact',monospace" font-weight="900" font-size="155" 
+              text-anchor="middle" letter-spacing="8" fill="url(#text_grad)" filter="url(#shadow_soft)">OSTP</text><text x="500" y="880" font-family="'Arial Black','Impact',monospace" font-weight="900" font-size="155" 
+              text-anchor="middle" letter-spacing="8" fill="none" stroke="#E8F4FF" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;0.25;0.4;0.25;0;0" dur="6s" repeatCount="indefinite"/>
+          OSTP
+        </text><text x="500" y="930" font-family="monospace" font-size="45" text-anchor="middle" fill="url(#text_sub_grad)">@echoShift</text></g><g id="CORE_SYSTEM" cursor="pointer"><g><animateTransform attributeName="transform" type="rotate" from="-25 500 470" to="335 500 470" dur="12s" repeatCount="indefinite"/><ellipse cx="500" cy="470" rx="216" ry="67" fill="none" stroke-width="8" filter="url(#glow_subtle)"><animate attributeName="stroke" values="#666666;#aaaaaa;#E8F4FF;#ffffff;#E8F4FF;#aaaaaa;#666666" dur="5s" repeatCount="indefinite"/></ellipse></g><g><animateTransform attributeName="transform" type="rotate" from="25 500 470" to="-335 500 470" dur="18s" repeatCount="indefinite"/><ellipse cx="500" cy="470" rx="216" ry="67" fill="none" stroke-width="8" filter="url(#glow_subtle)"><animate attributeName="stroke" values="#aaaaaa;#666666;#aaaaaa;#E8F4FF;#ffffff;#E8F4FF;#aaaaaa" dur="5s" begin="2.5s" repeatCount="indefinite"/></ellipse></g><circle id="core_sphere" cx="500" cy="470" r="128" fill="url(#sphere_chrome)" filter="url(#shadow_soft)"><animate attributeName="r" values="128;134;128" dur="3s" repeatCount="indefinite" /></circle><ellipse cx="470" cy="438" rx="40" ry="24" fill="white" opacity="0.35" transform="rotate(-20 470 438)"/><circle cx="500" cy="470" r="133" fill="none" filter="url(#led_glow)"><animate attributeName="stroke" values="#0A2040;#1A4A7A;#2E6EAA;#E8F4FF;#2E6EAA;#1A4A7A;#0A2040" dur="5s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="1;2;4;6;4;2;1" dur="5s" repeatCount="indefinite"/></circle><ellipse cx="472" cy="434" rx="18" ry="10" fill="#E8F4FF" opacity="0" transform="rotate(-20 472 434)" filter="url(#led_glow)"><animate attributeName="opacity" values="0;0;0.6;0.9;0.6;0;0" dur="5s" repeatCount="indefinite"/></ellipse></g><script><![CDATA[
+        var svgRoot = document.querySelector('svg');
+        var light = document.getElementById('light_source');
+        var core = document.getElementById('CORE_SYSTEM');
+        var sphere = document.getElementById('core_sphere');
+
+        svgRoot.addEventListener('mousemove', function(e) {
+          var rect = svgRoot.getBoundingClientRect();
+          var x = (e.clientX - rect.left) * (600 / rect.width);
+          var y = (e.clientY - rect.top) * (600 / rect.height);
+          var xOrig = (x - 300) / 0.35 + 500;
+          var yOrig = (y - 300) / 0.35 + 500;
+          light.setAttribute('x', xOrig);
+          light.setAttribute('y', yOrig);
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if(e.key === '1') sphere.style.fill = 'url(#core_pulse)';
+          else if(e.key === '2') sphere.style.fill = '#FF0000';
+          else if(e.key === '3') sphere.style.fill = '#FFFFFF';
+        });
+
+        core.addEventListener('click', function() {
+          var shockwave = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          shockwave.setAttribute("cx", "500");
+          shockwave.setAttribute("cy", "470");
+          shockwave.setAttribute("r", "128");
+          shockwave.setAttribute("fill", "none");
+          shockwave.setAttribute("stroke", "#FF0000");
+          shockwave.setAttribute("stroke-width", "12");
+          var container = document.getElementById('CORE_SYSTEM').parentNode;
+          container.appendChild(shockwave);
+          shockwave.animate([
+            { r: 128, opacity: 1 },
+            { r: 800, opacity: 0 }
+          ], { duration: 600 }).onfinish = function() { shockwave.remove(); };
+        });
+      ]]></script></g></g></svg>
+</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text)">OSTP · DevTool v1.1</div>
+            <div class="mono-sm" style="color:var(--text-muted);margin-top:4px">Operator Syncronic Technology Professional</div>
+            <div class="mono-sm" style="color:var(--ostp-warn);margin-top:16px;font-size:10px;letter-spacing:1px">
+               FLUJO: CARGAR (IZQ) → ANALIZAR → SAVE AS → EDITAR EN SUBLIME TEXT
+            </div>
+          </div>
+        </div>
+        <div id="terminal">
+          <div class="term-header">
+            <div class="term-title">OSTP · TERMINAL</div> <button class="btn btn-vino btn-xs" onclick="clearLog()">CLR</button>
+          </div>
+          <div class="term-log" id="log"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STATUS BAR ─────────────────────────────────── -->
+    <div id="statusbar">
+      <div class="status-item">
+        <div class="status-dot" style="background:var(--ostp-primary)"></div>
+        <span class="status-ok" id="stMsg">READY</span>
+      </div>
+      <span>OSTP · @echoShift · Zapopan, Jalisco</span>
+      <span class="status-right" id="stTime"></span>
+    </div>
+
+    <!-- ── MODALS ─────────────────────────────────────── -->
+    <div class="modal-overlay" id="modalError">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">⚠ Error detectado</span> <button class="modal-close" onclick="closeModal('modalError')"></button>
+        </div>
+        <div id="modalErrorBody" style="font-size:13px;line-height:1.7;color:var(--text)"></div>
+        <div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end"> <button class="btn btn-ghost btn-sm" onclick="closeModal('modalError')">Cerrar</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay" id="modalShortcuts">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">⌨ Keyboard Shortcuts</span> <button class="modal-close" onclick="closeModal('modalShortcuts')">✕</button>
+        </div>
+        <div id="modalShortcutsBody" style="font-size:12px;font-family:var(--font-mono)"></div>
+      </div>
+    </div>
+    <div class="modal-overlay" id="modalAbout">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">OSTP · DevTool v1.1</span> <button class="modal-close" onclick="closeModal('modalAbout')">✕</button>
+        </div>
+        <div style="font-size:13px;line-height:1.8;color:var(--text)">
+          <p style="color:var(--ostp-primary);font-family:var(--font-mono);margin-bottom:12px">Operator Syncronic Technology Professional</p>
+          <p>@echoShift · QUANTUM.qnu · Zapopan, Jalisco</p>
+          <p style="color:var(--text-muted);margin-top:8px;font-size:11px">Elimina el punto ciego entre comunicación,<br>construcción y resultados en proyectos de desarrollo.</p>
+          <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:10px;color:var(--ostp-gold)">
+            <!--████████████████ostp████████████████████-->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   <div class="modal-overlay" id="modalSaveAs">
+      <div class="modal">
+        <div class="modal-header">
+          <span class="modal-title">💾 Save As — Exportar Proyecto</span> <button class="modal-close" onclick="closeModal('modalSaveAs')">✕</button>
+        </div>
+        <div style="font-size:13px;line-height:1.7;color:var(--text)">
+          <p style="color:var(--text-muted);margin-bottom:12px">Seleccione el formato y nombre. Se abrirá el diálogo nativo del SO para elegir la ruta de destino.</p>
+          
+          <div style="margin-bottom:12px">
+            <label class="label" style="display:block;margin-bottom:6px">Formato de salida</label>
+            <select id="saveAsFormat" style="width:100%;background:var(--bg-root);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:var(--r-md);font-family:var(--font-mono)">
+              <option value="md">Markdown (.md) — Recomendado para LLMs</option>
+              <option value="txt">Texto Plano (.txt)</option>
+              <option value="ps1">PowerShell Script (.ps1)</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:16px">
+            <label class="label" style="display:block;margin-bottom:6px">Nombre del archivo</label>
+            <input type="text" id="saveAsName" value="quantum_ostp_export" style="width:100%;background:var(--bg-root);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:var(--r-md);font-family:var(--font-mono)"/>
+          </div>
+
+          <div style="background:rgba(210,153,34,0.06);border:1px solid rgba(210,153,34,0.2);border-radius:var(--r-md);padding:10px;font-size:11px;color:var(--ostp-warn)">
+            <strong>Nota:</strong> Para archivos &gt;100MB, abra el resultado directamente en <strong>Sublime Text</strong> para evitar el colapso del navegador.
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end"> <button class="btn btn-ghost btn-sm" onclick="closeModal('modalSaveAs')">Cancelar</button> <button class="btn btn-gold btn-sm" id="btnConfirmSaveAs">💾 Guardar en...</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="src/core/app.js"></script>
+</body>
+</html>

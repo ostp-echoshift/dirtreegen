@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — App Layout
+   styles/layout/app.css
+   @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ */
+
+/* ── Shell ────────────────────────────────────────── */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Body layout ──────────────────────────────────── */
+#body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Main area ────────────────────────────────────── */
+#main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  background: var(--bg-root);
+}
+
+/* ── Output panel ─────────────────────────────────── */
+#output {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* ── El mero chiludo (OSTP Seal) ──────────────────────── */
+.empty-icon svg {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.3));
+    animation: sealPulse 3s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.3));
+    }
+    50% { 
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 50px rgba(0, 240, 255, 0.6));
+    }
+}
+
+/* Animación de brillo orbital */
+.empty-icon svg #hexagon_container {
+    animation: hexGlow 4s ease-in-out infinite;
+}
+
+@keyframes hexGlow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}

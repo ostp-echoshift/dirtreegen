@@ -1,0 +1,94 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Buttons
+   styles/components/buttons.css
+═══════════════════════════════════════════════════════ */
+
+.btn {
+  padding: 5px 12px;
+  border: none;
+  border-radius: var(--r-md);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all var(--t-base);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn:hover   { transform: translateY(-1px); opacity: 0.9; }
+.btn:active  { transform: translateY(0); opacity: 1; }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+/* ── Variants ─────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--ostp-secondary), #1f6feb);
+  color: #fff;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--ostp-primary), #00cc7a);
+  color: var(--text-on-primary);
+}
+
+.btn-vino {
+  background: linear-gradient(135deg, var(--ostp-vino), #3d0a14);
+  color: var(--text-on-vino);
+  border: 1px solid rgba(109,26,42,0.5);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--ostp-gold), #8B6520);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.btn-ghost:hover {
+  border-color: var(--ostp-primary);
+  color: var(--ostp-primary);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--ostp-accent), #cc3333);
+  color: #fff;
+}
+
+/* ── Sizes ────────────────────────────────────────── */
+.btn-xs  { padding: 2px 8px;  font-size: var(--fs-xs); }
+.btn-sm  { padding: 4px 10px; font-size: var(--fs-sm); }
+.btn-lg  { padding: 8px 18px; font-size: var(--fs-lg); }
+
+/* ── View tabs ────────────────────────────────────── */
+.vt {
+  padding: 4px 11px;
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all var(--t-base);
+}
+
+.vt.on {
+  background: var(--ostp-primary);
+  color: var(--text-on-primary);
+  border-color: var(--ostp-primary);
+}
+
+.vt:hover:not(.on) {
+  border-color: var(--ostp-secondary);
+  color: var(--ostp-secondary);
+}

@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Status Bar
+   styles/components/statusbar.css
+═══════════════════════════════════════════════════════ */
+
+#statusbar {
+  height: var(--statusbar-h);
+  flex-shrink: 0;
+  background: var(--ostp-vino);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-md);
+  gap: var(--sp-lg);
+  font-size: var(--fs-sm);
+  letter-spacing: 1px;
+  color: rgba(253,246,236,0.7);
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+.status-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+}
+
+.status-ok  { color: var(--ostp-primary); }
+.status-right { margin-left: auto; }

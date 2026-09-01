@@ -1,0 +1,18 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Tree View
+   styles/components/tree.css
+═══════════════════════════════════════════════════════ */
+
+.v-tree {
+  padding: var(--sp-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  line-height: 1.7;
+}
+
+.v-tree pre {
+  color: var(--text);
+  font-size: var(--fs-base);
+  white-space: pre;
+  overflow-x: auto;
+}

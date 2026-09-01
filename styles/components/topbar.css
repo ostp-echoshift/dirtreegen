@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Topbar Component
+   styles/components/topbar.css
+═══════════════════════════════════════════════════════ */
+
+#topbar {
+  height: var(--topbar-h);
+  background: linear-gradient(90deg, var(--bg-root), #0d1525);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-xl);
+  gap: var(--sp-lg);
+  flex-shrink: 0;
+  position: relative;
+  z-index: var(--z-topbar);
+}
+
+#topbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ostp-accent), var(--ostp-primary), var(--ostp-secondary));
+}
+
+/* ── Brand ────────────────────────────────────────── */
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  flex-shrink: 0;
+}
+
+.topbar-brand-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--ostp-primary);
+  box-shadow: 0 0 8px var(--ostp-primary);
+}
+
+.topbar-brand-name {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.topbar-brand-sub {
+  font-size: var(--fs-xs);
+  letter-spacing: 2px;
+  color: var(--ostp-primary);
+}
+
+/* ── Command line ─────────────────────────────────── */
+.topbar-cmd {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.topbar-cmd-inner {
+  background: rgba(0,255,144,0.04);
+  border: 1px solid rgba(0,255,144,0.12);
+  border-radius: var(--r-lg);
+  padding: 5px 16px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  min-width: 280px;
+}
+
+.topbar-cmd-inner .prompt { color: var(--ostp-primary); }
+
+/* ── Actions ──────────────────────────────────────── */
+.topbar-actions {
+  display: flex;
+  gap: var(--sp-sm);
+  margin-left: auto;
+}

@@ -1,0 +1,58 @@
+/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Toolbar
+   styles/components/toolbar.css
+═══════════════════════════════════════════════════════ */
+
+#toolbar {
+  height: var(--toolbar-h);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sp-md);
+  gap: var(--sp-sm);
+  background: rgba(22,27,34,0.8);
+  flex-shrink: 0;
+}
+
+.toolbar-path {
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  color: var(--text-muted);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 2px;
+}
+/* ── SVG en botones del toolbar ────────────────────────── */
+.vt svg {
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+.vt:hover svg {
+    color: var(--ostp-primary);
+}
+.vt.on svg {
+    color: var(--ostp-primary);
+}
+/* ── SVG en botones ────────────────────────────────────── */
+.vt .btn-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 4px;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+.vt:hover .btn-icon {
+    color: var(--ostp-primary);
+}
+.vt.on .btn-icon {
+    color: var(--ostp-primary);
+}

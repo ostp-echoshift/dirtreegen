@@ -1,0 +1,15 @@
+﻿/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Dark Theme (default)
+   styles/themes/dark.css
+   @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ */
+
+[data-theme="dark"],
+:root {
+  --bg-root:  #050811;
+  --bg-dark:  #0a0f1c;
+  --bg-card:  #161b22;
+  --border:   #1e2d3d;
+  --text:     #c9d1d9;
+  --text-muted: #8b949e;
+}

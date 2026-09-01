@@ -1,0 +1,237 @@
+# ═══════════════════════════════════════════════════════════════
+#  OSTP DevTool — AI Prompt Context
+#  docs/yaml/prompt.yaml
+#  @echoShift · QUANTUM.qnu · Zapopan, Jalisco
+#  Version: 1.1.0
+#  Updated: 2026-08-18
+# ═══════════════════════════════════════════════════════════════
+
+identity:
+  name:     "OSTP DevTool"
+  alias:    "Agente Rider"
+  author:   "@echoShift"
+  system:   "QUANTUM.qnu"
+  location: "Zapopan, Jalisco, México"
+  context:  "Modo agente OSTP activado"
+  version:  "1.1.0"
+
+project:
+  name:    "DirTreeGen"
+  repo:    "ostp-echoshift.github.io"
+  version: "1.1.0"
+  stack:
+    - "HTML5 vanilla"
+    - "CSS modular (no framework)"
+    - "JavaScript ES Modules"
+    - "GitHub Pages (hosting)"
+
+mission: >
+  Eliminar el punto ciego entre comunicación, construcción y resultados
+  en proyectos de desarrollo. La herramienta ubica, abre, lee, desglosea,
+  mapea posición, genera organización, sustrae, migra a formato distinto
+  y emite output legible para el usuario Y para la consola (PowerShell).
+
+modules:
+  - id: tree
+    desc: "Árbol visual del proyecto en formato console"
+  - id: reader
+    desc: "Lee y despliega contenido real de cualquier archivo"
+  - id: search
+    desc: "Búsqueda por nombre y contenido con snippet"
+  - id: validator
+    desc: "Valida versiones Kotlin/KSP/AGP, nav IDs, manifest y seguridad"
+    engines:
+      - version_rules: "Kotlin, AGP, KSP, Room, JVM"
+      - annotation_processor: "kapt vs ksp (detección Kotlin 2.x)"
+      - nav_id_rules: "nav_graph ↔ bottom_nav_menu + startDestination"
+      - manifest_rules: "Activity name vs .kt + android:exported"
+      - security_rules: "secrets, .env, local.properties en .gitignore"
+  - id: exporter
+    desc: "Genera MD + TXT con sello OSTP y etiquetas de lenguaje (57 extensiones)"
+  - id: cmd
+    desc: "Output formateado para PowerShell / consola"
+
+ui_components:
+  topbar:
+    - "cmdLine actualizada"
+    - "Botón Quantum (✦) — Ctrl+Q"
+    - "Botón Dark (◐) — Ctrl+D"
+    - "Botón Shortcuts (⌨) — Ctrl+/"
+    - "Botón About (ⓘ)"
+  sidebar:
+    - "Carga classify.json via fetch()"
+    - "57 extensiones soportadas"
+    - "Filtros por extensión"
+    - "Búsqueda con snippets"
+  modals:
+    - "modal:error — con FIX expandible"
+    - "modal:shortcuts — carga desde shortcuts.json"
+    - "modal:about — información OSTP"
+  buttons:
+    - "Keyboard shortcuts: Ctrl+O, F, 1-5, M, T, L, \, D, Q, /"
+    - "Cierra modales con Escape"
+
+themes:
+  dark:
+    default: true
+    key: "Ctrl+D"
+    desc: "Tema oscuro profesional"
+  quantum:
+    default: false
+    key: "Ctrl+Q"
+    desc: "Tema neon inmersivo"
+
+shortcuts:
+  - key: "Ctrl+O"
+    action: "triggerOpen"
+    desc: "Abrir carpeta"
+  - key: "Ctrl+F"
+    action: "focusSearch"
+    desc: "Enfocar búsqueda"
+  - key: "Escape"
+    action: "closeSearch"
+    desc: "Cerrar búsqueda / modales"
+  - key: "Ctrl+1"
+    action: "view:tree"
+    desc: "Vista TREE"
+  - key: "Ctrl+2"
+    action: "view:content"
+    desc: "Vista READ"
+  - key: "Ctrl+3"
+    action: "view:export"
+    desc: "Vista EXPORT"
+  - key: "Ctrl+4"
+    action: "view:validate"
+    desc: "Vista VALIDATE"
+  - key: "Ctrl+5"
+    action: "view:cmd"
+    desc: "Vista PS1"
+  - key: "Ctrl+M"
+    action: "export:md"
+    desc: "Exportar Markdown"
+  - key: "Ctrl+T"
+    action: "export:txt"
+    desc: "Exportar TXT"
+  - key: "Ctrl+L"
+    action: "clearLog"
+    desc: "Limpiar terminal"
+  - key: "Ctrl+\\"
+    action: "toggleSidebar"
+    desc: "Mostrar/ocultar sidebar"
+  - key: "Ctrl+D"
+    action: "theme:dark"
+    desc: "Tema Dark"
+  - key: "Ctrl+Q"
+    action: "theme:quantum"
+    desc: "Tema Quantum"
+  - key: "Ctrl+/"
+    action: "modal:shortcuts"
+    desc: "Ver shortcuts"
+
+classify:
+  extensions: 57
+  special_names: ["password", "secret", ".env", "credentials", "token"]
+  risk_levels:
+    c: "CRITICAL"
+    h: "HIGH"
+    m: "MEDIUM"
+    l: "LOW"
+
+android_context:
+  project:   "JR-Sistema-Android"
+  package:   "com.jrsistem.app"
+  stack:
+    kotlin:     "2.0.21"
+    ksp:        "2.0.21-1.0.28"
+    agp:        "8.7.3"
+    room:       "2.7.0"
+    gradle:     "9.3.1"
+    jdk:        "Eclipse Adoptium 17.0.16.8-hotspot"
+  java_home:  "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.16.8-hotspot"
+  device:     "Moto G84 5G"
+  emulator:   "Small Phone API 36"
+  paths:
+    project:   "C:\\Proyectos\\JR-Sistema-Android"
+    devtool:   "C:\\Proyectos\\DirTreeGen"
+    crossdev:  "C:\\Users\\fngtr\\CrossDevice\\moto g84 5G"
+
+known_errors:
+  - id:    "kotlin-duplicate-plugin"
+    error: "Cannot add extension with name 'kotlin'"
+    fix:   "No declarar kotlin en buildscript Y en plugins{} simultáneamente"
+
+  - id:    "kapt-kotlin2"
+    error: "Kapt doesn't support language version 2.0+"
+    fix:   "Migrar a KSP: id('com.google.devtools.ksp')"
+
+  - id:    "stdlib-version-mismatch"
+    error: "Metadata version 2.2.0, expected 2.0.0"
+    fix:   "resolutionStrategy.force('kotlin-stdlib:2.0.21')"
+
+  - id:    "nav-id-mismatch"
+    error: "App no navega entre fragments"
+    fix:   "IDs en nav_graph.xml deben ser idénticos a bottom_nav_menu.xml"
+
+  - id:    "manifest-classnotfound"
+    error: "ClassNotFoundException: com.jrsistem.app.MainActivity"
+    fix:   "android:name en Manifest debe coincidir con nombre real del .kt"
+
+  - id:    "java-home-invalid"
+    error: "JAVA_HOME is set to an invalid directory"
+    fix: >
+      reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
+      /v JAVA_HOME /t REG_SZ
+      /d "C:\Program Files\Eclipse Adoptium\jdk-17.0.16.8-hotspot" /f
+
+  - id:    "activity-exported-missing"
+    error: "Activity launcher sin android:exported"
+    fix:   "Agregar android:exported=\"true\" a la activity con intent-filter MAIN/LAUNCHER"
+
+  - id:    "local-properties-gitignore"
+    error: "local.properties no está en .gitignore"
+    fix:   "Agregar local.properties al .gitignore"
+
+output_formats:
+  markdown:
+    header:   "# Árbol de Directorios - Análisis Cuántico"
+    system:   "QUANTUM.qnu Operation System"
+    author:   "OSTP @echoShift & Quantum Sys"
+    lang_map: "57 extensiones soportadas"
+    seal:     "<!--████████████████ostp████████████████████-->"
+  powershell:
+    header:   "# OSTP DevTool — PowerShell Output"
+    command:  "Get-Content \"{path}\" -Raw"
+    seal:     "# <!--████████████████ostp████████████████████-->"
+
+brand:
+  colors:
+    primary:   "#00ff90"
+    secondary: "#58a6ff"
+    accent:    "#ff6b6b"
+    vino:      "#6D1A2A"
+    gold:      "#C8982A"
+    warn:      "#d29922"
+  fonts:
+    ui:   "Segoe UI, system-ui"
+    mono: "Consolas, Monaco"
+  seal:   "<!--████████████████ostp████████████████████-->"
+  themes:
+    - dark
+    - quantum
+
+changelog:
+  v1.1.0:
+    date: "2026-08-18"
+    changes:
+      - "validator.js COMPLETO — 5 motores de validación"
+      - "classify.json expandido: 57 extensiones"
+      - "SVGs mejorados (9 archivos)"
+      - "Botones Quantum/Dark/Shortcuts/About en topbar"
+      - "Modales conectados al event bus"
+      - "Keyboard shortcuts (15 shortcuts)"
+      - "Temas Dark y Quantum"
+      - "13 HTML muertos eliminados"
+  v1.0.0:
+    date: "2026-03-18"
+    changes:
+      - "Primer release — Scaffold completo"

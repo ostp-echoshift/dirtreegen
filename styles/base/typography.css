@@ -1,0 +1,61 @@
+﻿/* ═══════════════════════════════════════════════════════
+   OSTP DevTool — Typography
+   styles/base/typography.css
+   @echoShift · QUANTUM.qnu
+═══════════════════════════════════════════════════════ */
+
+.label {
+  font-size: var(--fs-xs);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.label-sm {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+}
+
+.mono-sm {
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+}
+
+.brand-gradient {
+  background: linear-gradient(45deg, var(--ostp-primary), var(--ostp-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.risk-c { color: var(--risk-critical); }
+.risk-h { color: var(--risk-high); }
+.risk-m { color: var(--risk-medium); }
+.risk-l { color: var(--risk-low); }
+
+.hl {
+  color: var(--ostp-primary);
+  font-weight: 700;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  background: rgba(0,0,0,0.3);
+  padding: 1px 5px;
+  border-radius: var(--r-sm);
+  color: var(--ostp-secondary);
+}
